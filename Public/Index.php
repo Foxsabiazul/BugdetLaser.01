@@ -1,6 +1,6 @@
 <?php 
 
-require_once __DIR__ .'/../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 use App\Controller\UserController;
 use App\Controller\NotFoundController;
@@ -8,42 +8,47 @@ use App\Controller\NotFoundController;
 $uri = $_SERVER['REQUEST_URI'];
 
 $pages = [
-    '\FreeLancers' => new UserController()
+    '/freelancers' => new UserController()
 ];
 
 $controller = $pages[$uri] ?? new NotFoundController();
 $controller->render();
 
-if ($uri == '/user00') {
-    $userController = new UserController();
-    $userController ->render();
-}
-
 header("Content-Type: application/json");
+    $controller->render();
 
 $requestMethod = $_SERVER["REQUEST_METHOD"];
 $uri = explode("/", trim($_SERVER["REQUEST_URI"], "/"));
- 
-$clientes = [
-    ["id" => 1, "nome" => "Maria Silva", "contato" => "maria@email.com"],
-    ["id" => 2, "nome" => "João Souza", "contato" => "joao@email.com"],
-];
+$requestMethod = $_SERVER["REQUEST_METHOD"];
+$clientesFile = __DIR__ . '/clientes.json';
+if (file_exists($clientesFile)) {
+    $clientes = json_decode(file_get_contents($clientesFile), true);
+    if (!is_array($clientes)) {
+        $clientes = [];
+    }
+} else {
+    $clientes = [
+        ["id" => 1, "nome" => "Maria Silva", "contato" => "maria@email.com"],
+        ["id" => 2, "nome" => "João Souza", "contato" => "joao@email.com"],
+    ];
+    file_put_contents($clientesFile, json_encode($clientes));
+}
+    ["id" => 2, "nome" => "João Souza", "contato" => "joao@email.com"];
 
-switch ($uri[0]) {
+switch ($uriParts[0]) {
     case "clientes":
         if ($requestMethod == "GET") {
             echo json_encode($clientes);
         } elseif ($requestMethod == "POST") {
-            $data = json_decode(file_get_contents("php://input"), true);
             $clientes[] = [
                 "id" => count($clientes) + 1,
                 "nome" => $data["nome"],
                 "contato" => $data["contato"]
             ];
-            echo json_encode(["mensagem" => "Cliente criado com sucesso"]);
+            file_put_contents($clientesFile, json_encode($clientes));
+            echo json_encode(["success" => true]);
         }
         break;
-
     case "orcamentos":
         if ($requestMethod == "GET") {
             echo json_encode([
@@ -51,10 +56,9 @@ switch ($uri[0]) {
             ]);
         }
         break;
-
     default:
         http_response_code(404);
         echo json_encode(["erro" => "Endpoint não encontrado"]);
         break;
-    }
-?>
+}
+?>  

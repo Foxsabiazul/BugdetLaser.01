@@ -106,8 +106,8 @@ class Servicos {
 }
 // Exemplo de uso
 try {
-    $servico = new Servicos("Adicone o Servico", [], []);
-    echo $servico; // Saída: Desenvolvimento de site - R$ 1.500,50 (Prazo: 30 dias)
+    $servico = new Servicos("Adicione o Serviço", 1500.50, 30);
+    echo $servico; // Saída: Adicione o Serviço - R$ 1.500,50 (Prazo: 30 dias)
     echo $servico->getValorFormatado(); // Saída: R$ 1.500,50
 } catch (InvalidArgumentException $e) {
     echo "Erro: " . $e->getMessage();

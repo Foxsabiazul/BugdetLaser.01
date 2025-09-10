@@ -1,16 +1,12 @@
 <?php
 
-/**
- * Classe para gerenciar conexões e verificar estabilidade
- */
 class User {
-    private $conexao = [];
     private $connected = false;
     private $disconnected = false;
     private $tentativasConexao = 0;
     private $maxTentativas = 3;
     private $tempoUltimaConexao;
-    private $statusConexao = 'desconectado'; // 'conectado', 'desconectado', 'instavel'
+    private $statusConexao = 'desconectado'; 
 
     /**
      * Construtor da classe User

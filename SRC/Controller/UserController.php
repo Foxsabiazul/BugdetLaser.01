@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-class UserController   
+class UserController    
 {
     public function render(): void 
     {
