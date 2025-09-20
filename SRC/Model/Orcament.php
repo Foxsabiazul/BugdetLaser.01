@@ -18,6 +18,7 @@ class Orcamento {
 
     public function adicionarServico(Servicos $servico) {
         $this->servicos[] = $servico;
+        
     }
 
     public function calcularTotal() {

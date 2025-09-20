@@ -13,6 +13,13 @@ class UserController
                 password: $_POST['user_password']
             );
         }
+        try {
+            // Code to render user information
+        } catch (\Exception $e) {
+            // Handle exception
+        }
+        
+        throw new \Exception ("Method not Implemented", 501);
     }
 }
 
