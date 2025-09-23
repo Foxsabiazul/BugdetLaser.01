@@ -2,8 +2,8 @@
 
 namespace App\Model;
 
-use Clientes;
-use Servicos;
+use Cliente;
+use Servico;
 
 class Pedidos {
     private $id;
@@ -11,10 +11,11 @@ class Pedidos {
     private $itens = [];
     private $status;
 
-    public function __construct($id, Clientes $cliente) {
+    public function __construct($id, Servico $servico,  Cliente $cliente) {
         $this->id = $id;
         $this->cliente = $cliente;
         $this->status = "Pendente";
+        $this->itens = [$servico];
     }
 
     public function adicionarItem($item) {
@@ -35,4 +36,37 @@ class Pedidos {
         return "Pedido #{$this->id} para {$this->cliente->getNome()} ({$this->status}):\n"
             . "{$itensStr}";
     }
+
+    public function getServico(){
+        return $this->itens;
+    }
+
+    public function getCliente(){
+        return $this->cliente;
+    }
+
+    public function getStatus(){
+        return $this->status;
+    }
+
+    public function getId(){
+        return $this->id;
+    }
+
+    public function setId($id): void {
+        $this->id = $id;
+    }
+
+    public function setCliente($cliente): void {
+        $this->cliente = $cliente;
+    }
+
+    public function setStatus($status): void {
+        $this->status = $status;
+    }
+
+    public function setItens($itens): void {
+        $this->itens = $itens;
+    }
+
 }

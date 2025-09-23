@@ -6,24 +6,24 @@ interface Remuneravel {
   
 class Orcamento {
     private $cliente;
-    private $servicos = [];
+    private $servico = [];
     private $status;
     /** @var Remuneravel[] */
     private $remuneracoes = [];
 
-    public function __construct(Clientes $cliente) {
+    public function __construct(Cliente $cliente) {
         $this->cliente = $cliente;
         $this->status = "Pendente";
     }
 
-    public function adicionarServico(Servicos $servico) {
-        $this->servicos[] = $servico;
+    public function adicionarServico(Servico $servico) {
+        $this->servico[] = $servico;
         
     }
 
     public function calcularTotal() {
         $total = 0;
-        foreach ($this->servicos as $servico) {
+        foreach ($this->servico as $servico) {
             $total += $servico->getValor();
         }
         return $total;
@@ -35,7 +35,7 @@ class Orcamento {
 
     public function paraString() {
         $servicosStr = "";
-        foreach ($this->servicos as $s) {
+        foreach ($this->servico as $s) {
             $servicosStr .= "Serviço: " . $s->getNome() . " - Valor: R$ " . $s->getValor() . "\r\n";
         }
         $total = $this->calcularTotal();
