@@ -20,7 +20,7 @@ Class FreeLancer {
         if ($rating >= 0 && $rating <= 5) {
             $this->rating = $rating;
         } else {
-            throw new InvalidArgumentException("Avaliação deve ser de 0 a 5.");
+            throw new InvalidArgumentException("Avalie o freelancer que prestou seu serviço de 0 a 5.");
         }
     }
 

@@ -53,7 +53,6 @@ class Servico {
     }
 }
 
-// Exemplo de uso
 try {
     $servico = new Servico("Adicione o Serviço", 1500.50, 30);
     echo $servico; // Saída: Adicione o Serviço - R$ 1.500,50 (Prazo: 30 dias)
