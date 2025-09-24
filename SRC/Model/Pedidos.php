@@ -4,22 +4,35 @@ namespace App\Model;
 
 use Cliente;
 use Servico;
+use FreeLancer;
 
 class Pedidos {
     private $id;
-    private $cliente;
     private $itens = [];
     private $status;
+    public $cliente;
+    public $freelancer;
 
-    public function __construct($id, Servico $servico,  Cliente $cliente) {
+    public function __construct($id, Servico $servico,  Cliente $cliente, FreeLancer $freelancer) {
         $this->id = $id;
         $this->cliente = $cliente;
         $this->status = "Pendente";
         $this->itens = [$servico];
+        $this->freelancer = $freelancer;
     }
 
     public function adicionarItem($item) {
         $this->itens[] = $item;
+                
+    }
+
+    public function adicionarCliente($cliente) {
+        $this->cliente = $cliente;
+                
+    }
+
+    public function adicionarFreeLancer($Freelancer) {
+        $this->cliente = $Freelancer;
                 
     }
 
@@ -37,6 +50,7 @@ class Pedidos {
             . "{$itensStr}";
     }
 
+    //getters
     public function getServico(){
         return $this->itens;
     }
@@ -53,6 +67,11 @@ class Pedidos {
         return $this->id;
     }
 
+    public function getFreelancer(){
+        return $this->freelancer;
+    }
+
+    //setters
     public function setId($id): void {
         $this->id = $id;
     }
