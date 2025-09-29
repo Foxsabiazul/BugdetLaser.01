@@ -5,7 +5,7 @@ class Servico {
     private int $valor;
     private int $prazo;
     private float $categoria;
-
+ 
     public function __construct(string $descricao, int $valor, int $prazo, float $categoria) {
         $this->setDescricao($descricao);
         $this->setValor($valor);
@@ -71,13 +71,4 @@ class Servico {
 
     
     
-}
-
-try {
-$servico = new Servico;
-$categoria = new Categoria =("Adicione a Categoria:   ");
-echo $servico; 
-echo $categoria;
-} catch (InvalidArgumentException $e) {
-echo "Erro: " . $e->getMessage();
 }
