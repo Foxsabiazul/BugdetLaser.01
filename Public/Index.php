@@ -4,6 +4,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use App\Controller\UserController;
 use App\Controller\NotFoundController;
+use App\Model\Data;
 
 $uri = explode("/", trim($_SERVER["REQUEST_URI"], "/"));
 $route = $uri[0] ?? "";

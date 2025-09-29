@@ -3,24 +3,24 @@
 interface Remuneravel {
     public function getValor();
 }
-  
+
 class Orcamento {
     private $cliente;
     private $servico = [];
     private $status;
     /** @var Remuneravel[] */
     private $remuneracoes = [];
-
+    
     public function __construct(Cliente $cliente) {
         $this->cliente = $cliente;
         $this->status = "Pendente";
     }
-
+    
     public function adicionarServico(Servico $servico) {
         $this->servico[] = $servico;
         
     }
-
+    
     public function calcularTotal() {
         $total = 0;
         foreach ($this->servico as $servico) {
@@ -28,11 +28,7 @@ class Orcamento {
         }
         return $total;
     }
-
-    public function atualizarStatus($novoStatus) {
-        $this->status = $novoStatus;
-    }
-
+    
     public function paraString() {
         $servicosStr = "";
         foreach ($this->servico as $s) {

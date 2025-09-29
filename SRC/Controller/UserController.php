@@ -17,6 +17,7 @@ class UserController
            
         } catch (\Exception $e) {
             
+            
         }
         
         throw new \Exception ("Método não implementado", 501);
